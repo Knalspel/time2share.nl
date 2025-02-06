@@ -15,6 +15,8 @@
                 placeholder="{{ __('Descripe your product') }}"
                 class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
             ></textarea>
+            <br>
+            <input type="date" name="deadline" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
             <x-primary-button class="mt-4">{{ __('Post') }}</x-primary-button>
         </form>
     </div>

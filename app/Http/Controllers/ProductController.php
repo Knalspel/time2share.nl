@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 class ProductController extends Controller
 {
@@ -12,7 +13,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('products.create', [
+        return view('products.new', [
             'products' => Product::with('user')->latest()->get(),
             ]);
     }
@@ -28,16 +29,20 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
+    //      
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
             'name' => 'required|string|max:100',
             'description' => 'string|max:100',
+            'deadline' => 'required|date',
         ]);
 
+        $validated['user_id'] = $request->user()->id;
         $request->user()->products()->create($validated);
 
-        return redirect(route('products.create'));
+        return redirect(route('products.index'));
     }
 
     /**

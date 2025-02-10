@@ -11,6 +11,7 @@ class Product extends Model
         'name',
         'description',
         'deadline',
+        'category',
         'user_id',
     ];
     

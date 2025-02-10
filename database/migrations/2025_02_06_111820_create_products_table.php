@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->string('name');
             $table->string('description');
+            $table->string('category');
             $table->date('deadline');
             $table->timestamps();
         });

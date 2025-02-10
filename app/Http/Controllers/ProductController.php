@@ -37,6 +37,7 @@ class ProductController extends Controller
             'name' => 'required|string|max:100',
             'description' => 'string|max:100',
             'deadline' => 'required|date',
+            'category' => 'string',
         ]);
 
         $validated['user_id'] = $request->user()->id;

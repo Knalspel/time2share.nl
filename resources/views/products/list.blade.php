@@ -16,6 +16,7 @@
                     <section style="margin-top: -15px">
                         <p class="text-xl mt-4 text-gray-900">{{ $product->name }}</p>
                         <p class="text-base text-gray-500">{{ $product->description }}</p>
+                        <p class="text-base text-gray-500">Category: {{ $product->category }}</p>
                         <p class="text-base text-gray-500">Deadline: {{ $product->deadline }}</p>
                     </section>
                     </div>

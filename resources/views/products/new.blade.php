@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
-        <form method="POST" action="{{ route('products.store') }}">
+        <form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data">
             @csrf
             <section style="margin-bottom: 20px">
                 <h1>Name:</h1>
@@ -31,6 +31,10 @@
                     <option value="hobby">Hobby</option>
                     <option value="anders">Anders</option>
                 </select>
+            </section>
+            <section style="margin-bottom: 20px">
+                <h1>Image:</h1>
+                <input type="file" name="image">
             </section>
             <h1 style="margin-bottom: -10px">Deadline:</h1>
             <input type="date" name="deadline" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">

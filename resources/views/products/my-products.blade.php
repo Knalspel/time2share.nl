@@ -20,7 +20,7 @@
                                 <p class="text-base text-gray-500">{{ $product->description }}</p>
                                 <p class="text-base text-gray-500">Category: {{ $product->category }}</p>
                                 <p class="text-base text-gray-500">Deadline: {{ $product->deadline }}</p>
-                            </section>
+                                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">                            </section>
                         </div>
                     </div>
                 @endif

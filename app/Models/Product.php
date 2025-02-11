@@ -12,6 +12,7 @@ class Product extends Model
         'description',
         'deadline',
         'category',
+        'image',
         'user_id',
     ];
     

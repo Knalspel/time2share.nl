@@ -37,10 +37,14 @@ class ProductController extends Controller
             'name' => 'required|string|max:100',
             'description' => 'string|max:100',
             'deadline' => 'required|date',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'category' => 'string',
         ]);
 
+        $imagePath = $request->file('image')->store('products', 'public');
+
         $validated['user_id'] = $request->user()->id;
+        $validated['image'] = $imagePath;
         $request->user()->products()->create($validated);
 
         return redirect(route('products.index'));

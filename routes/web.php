@@ -23,6 +23,9 @@ Route::get('/my-products', function() {
     ]);
 })->name('my-products');
 
+Route::get('/', [ProductController::class, 'index']);
+Route::get('/search', [ProductController::class, 'search'])->name('products.search');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -30,7 +33,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('products', ProductController::class)
-    ->only(['index', 'store'])
+    ->only(['index', 'store', 'search'])
     ->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';

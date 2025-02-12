@@ -1,6 +1,13 @@
 <x-app-layout>
     <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
         <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
+            <form action="{{ route('products.search') }}" method="GET" class="block w-full" style="margin: 5px;">
+                <input type="text" name="query" value="{{ request('query') }}" placeholder="Search for a product" style="width: 80%;">
+                <button type="submit">Search</button>
+            </form>
+            @if($products->isEmpty())
+                <p>No products found.</p>
+            @endif
             @foreach ($products as $product)
                 <div class="p-6 flex space-x-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 -scale-x-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -18,6 +25,7 @@
                         <p class="text-base text-gray-500">{{ $product->description }}</p>
                         <p class="text-base text-gray-500">Category: {{ $product->category }}</p>
                         <p class="text-base text-gray-500">Deadline: {{ $product->deadline }}</p>
+                        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">  
                     </section>
                     </div>
                 </div>

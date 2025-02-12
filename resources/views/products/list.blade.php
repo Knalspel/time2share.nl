@@ -3,6 +3,16 @@
         <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
             <form action="{{ route('products.search') }}" method="GET" class="block w-full" style="margin: 5px;">
                 <input type="text" name="query" value="{{ request('query') }}" placeholder="Search for a product" style="width: 80%;">
+                <select name="category">
+                    <option value="">All categories</option>
+                    <option value="sport">Sport</option>
+                    <option value="elektronica">Elektronica</option>
+                    <option value="speelgoed">Speelgoed</option>
+                    <option value="kleding">Kleding</option>
+                    <option value="vervoersmiddel">Vervoersmiddel</option>
+                    <option value="hobby">Hobby</option>
+                    <option value="anders">Anders</option>
+                </select>
                 <button type="submit">Search</button>
             </form>
             @if($products->isEmpty())

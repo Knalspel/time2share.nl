@@ -85,7 +85,17 @@ class ProductController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
-        $products = Product::where('name', 'LIKE', "%{$query}%")->get();
-        return view('products.list', compact('products', 'query'));
+        $category = $request->input('category');
+        $products = Product::query();
+
+        if (!empty($query)) {
+            $products->where('name', 'LIKE', "%{$query}%");
+        }
+        if (!empty($category)) {
+            $products->where('category', $category);
+        }
+
+        $products = $products->get();
+        return view('products.list', compact('products', 'query', 'category'));
     }
 }

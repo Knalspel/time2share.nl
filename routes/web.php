@@ -23,7 +23,6 @@ Route::get('/my-products', function() {
     ]);
 })->name('my-products');
 
-Route::get('/', [ProductController::class, 'index']);
 Route::get('/search', [ProductController::class, 'search'])->name('products.search');
 
 Route::middleware('auth')->group(function () {
@@ -33,7 +32,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('products', ProductController::class)
-    ->only(['index', 'store', 'search'])
+    ->only(['index', 'store', 'search', 'edit', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';

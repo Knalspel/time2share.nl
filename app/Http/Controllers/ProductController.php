@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
+use Illuminate\Support\Facades\Gate;
 
 class ProductController extends Controller
 {
@@ -37,14 +39,14 @@ class ProductController extends Controller
             'name' => 'required|string|max:100',
             'description' => 'string|max:100',
             'deadline' => 'required|date',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'category' => 'string',
         ]);
 
-        $imagePath = $request->file('image')->store('products', 'public');
-
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('products', 'public');
+        }
         $validated['user_id'] = $request->user()->id;
-        $validated['image'] = $imagePath;
         $request->user()->products()->create($validated);
 
         return redirect(route('products.index'));
@@ -61,25 +63,46 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    public function edit(Product $product): View
     {
-        //
+        Gate::authorize('update', $product);
+
+        return view('products.edit', [
+            'product' => $product,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Product $product): RedirectResponse
     {
-        //
+        Gate::authorize('update', $product);
+ 
+        $validated = $request->validate([
+            'name' => 'required|string|max:100',
+            'description' => 'string|max:100',
+            'deadline' => 'required|date',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'category' => 'string',
+        ]);
+        
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('products', 'public');
+        }
+
+        $product->update($validated);
+        return redirect(route('products.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product): RedirectResponse
     {
-        //
+        Gate::authorize('delete', $product);
+        $product->delete();
+        return redirect(route('products.index'));
     }
 
     public function search(Request $request)

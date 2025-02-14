@@ -13,14 +13,43 @@
                                 <div>
                                     <span class="text-gray-800">{{ $product->user->name }}</span>
                                     <small class="ml-2 text-sm text-gray-600">{{ $product->created_at->format('j M Y, g:i a') }}</small>
+                                    @unless ($product->created_at->eq($product->updated_at))
+                                        <small class="text-sm text-gray-600"> &middot; {{ __('edited') }}</small>
+                                    @endunless
                                 </div>
+                                @if ($product->user->is(auth()->user()))
+                                    <x-dropdown>
+                                        <x-slot name="trigger">
+                                            <button>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                                                </svg>
+                                            </button>
+                                        </x-slot>
+                                        <x-slot name="content">
+                                            <x-dropdown-link :href="route('products.edit', $product)">
+                                                {{ __('Edit') }}
+                                            </x-dropdown-link>
+                                            <form method="POST" action="{{ route('products.destroy', $product) }}">
+                                                @csrf
+                                                @method('delete')
+                                                <x-dropdown-link :href="route('products.destroy', $product)" onclick="event.preventDefault(); this.closest('form').submit();">
+                                                    {{ __('Delete') }}
+                                                </x-dropdown-link>
+                                            </form>
+                                        </x-slot>
+                                    </x-dropdown>
+                                @endif
                             </div>
                             <section style="margin-top: -15px">
                                 <p class="text-xl mt-4 text-gray-900">{{ $product->name }}</p>
                                 <p class="text-base text-gray-500">{{ $product->description }}</p>
                                 <p class="text-base text-gray-500">Category: {{ $product->category }}</p>
                                 <p class="text-base text-gray-500">Deadline: {{ $product->deadline }}</p>
-                                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">                            </section>
+                                @if (!empty($product->image)) 
+                                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
+                                @endif
+                            </section>
                         </div>
                     </div>
                 @endif

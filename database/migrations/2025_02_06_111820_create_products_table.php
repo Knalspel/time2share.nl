@@ -15,10 +15,13 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->unsignedBigInteger('loaner_id')->nullable();
+            $table->foreign('loaner_id')->references('id')->on('users')->cascadeOnDelete();
             $table->string('name');
             $table->string('description');
             $table->string('category');
             $table->string('image')->nullable();
+            $table->string('status')->default('AVAILABLE');
             $table->date('deadline');
             $table->timestamps();
         });

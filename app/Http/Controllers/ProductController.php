@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
@@ -120,5 +121,15 @@ class ProductController extends Controller
 
         $products = $products->get();
         return view('products.list', compact('products', 'query', 'category'));
+    }
+
+    public function loan(Request $request, Product $product): RedirectResponse
+    {
+        $product->update([
+            'loaner_id' => Auth::id(),
+            'status' => 'LOANING',
+        ]);
+
+        return redirect(route('products.index'));
     }
 }

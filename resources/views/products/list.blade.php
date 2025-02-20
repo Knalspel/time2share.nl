@@ -35,7 +35,14 @@
                         <p class="text-base text-gray-500">{{ $product->description }}</p>
                         <p class="text-base text-gray-500">Category: {{ $product->category }}</p>
                         <p class="text-base text-gray-500">Deadline: {{ $product->deadline }}</p>
-                        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">  
+                        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
+                        <form action="{{ route('products.loan', $product->id) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <button type="submit" style="color: white; background-color: purple; border-radius: 15px; padding: 5px; width: 75%; margin: auto;" class="block">
+                                Loan
+                            </button>
+                        </form>                    
                     </section>
                     </div>
                 </div>

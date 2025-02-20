@@ -14,6 +14,8 @@ class Product extends Model
         'category',
         'image',
         'user_id',
+        'loaner_id',
+        'status',
     ];
     
     public function owner()
@@ -25,6 +27,11 @@ class Product extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function loaner()
+        {
+            return $this->belongsTo(User::class, 'loaner_id');
+        }
 }
 
 

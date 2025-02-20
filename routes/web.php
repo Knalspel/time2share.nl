@@ -31,6 +31,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::patch('/products/{product}/loan', [ProductController::class, 'loan'])->name('products.loan');
+
 Route::resource('products', ProductController::class)
     ->only(['index', 'store', 'search', 'edit', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);

@@ -32,6 +32,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::patch('/products/{product}/loan', [ProductController::class, 'loan'])->name('products.loan');
+Route::patch('/products/{product}/return', [ProductController::class, 'return'])->name('products.return');
+
 
 Route::resource('products', ProductController::class)
     ->only(['index', 'store', 'search', 'edit', 'update', 'destroy'])

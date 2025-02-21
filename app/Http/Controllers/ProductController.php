@@ -132,4 +132,13 @@ class ProductController extends Controller
 
         return redirect(route('products.index'));
     }
+
+    public function return(Request $request, Product $product): RedirectResponse
+    {
+        $product->update([
+            'status' => 'RETURNED',
+        ]);
+
+        return redirect(route('products.index'));
+    }
 }

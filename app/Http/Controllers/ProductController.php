@@ -38,7 +38,7 @@ class ProductController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:100',
-            'description' => 'string|max:100',
+            'description' => 'nullable|string|max:250',
             'deadline' => 'required|date',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'category' => 'string',
@@ -56,9 +56,11 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show(Product $product): View
     {
-        //
+        return view('products.item', [
+            'product' => $product,
+        ]);
     }
 
     /**

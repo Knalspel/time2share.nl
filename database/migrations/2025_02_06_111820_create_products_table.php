@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('loaner_id')->nullable();
             $table->foreign('loaner_id')->references('id')->on('users')->cascadeOnDelete();
             $table->string('name');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->string('category');
             $table->string('image')->nullable();
             $table->string('status')->default('AVAILABLE');

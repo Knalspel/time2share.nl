@@ -19,9 +19,9 @@ class Product extends Model
     ];
     
     public function owner()
-        {
-            return $this->belongsTo(User::class, 'user_id');
-        }
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
     public function user(): BelongsTo 
     {
@@ -29,9 +29,9 @@ class Product extends Model
     }
 
     public function loaner()
-        {
-            return $this->belongsTo(User::class, 'loaner_id');
-        }
+    {
+        return $this->belongsTo(User::class, 'loaner_id');
+    }
 }
 
 

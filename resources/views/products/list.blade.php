@@ -30,6 +30,29 @@
                                 <small class="ml-2 text-sm text-gray-600">{{ $product->created_at->format('j M Y, g:i a') }}</small>
                             </div>
                         </div>
+                        @if ($product->user->is(auth()->user()) OR auth()->user()->admin)
+                                    <x-dropdown>
+                                        <x-slot name="trigger">
+                                            <button>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                                                </svg>
+                                            </button>
+                                        </x-slot>
+                                        <x-slot name="content">
+                                            <x-dropdown-link :href="route('products.edit', $product)">
+                                                {{ __('Edit') }}
+                                            </x-dropdown-link>
+                                            <form method="POST" action="{{ route('products.destroy', $product) }}">
+                                                @csrf
+                                                @method('delete')
+                                                <x-dropdown-link :href="route('products.destroy', $product)" onclick="event.preventDefault(); this.closest('form').submit();">
+                                                    {{ __('Delete') }}
+                                                </x-dropdown-link>
+                                            </form>
+                                        </x-slot>
+                                    </x-dropdown>
+                                @endif
                         <section style="margin-top: -15px">
                             <p class="text-xl mt-4 text-gray-900">{{ $product->name }}</p>
                             <p class="text-base text-gray-500">{{ $product->description }}</p>

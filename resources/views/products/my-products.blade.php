@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
-    <button onclick="window.location.href='{{route('new')}}'"style="color: white; background-color: purple; border-radius: 15px; padding: 5px; width: 75%; margin: auto;" class="block">Register new product</button>
+        <button onclick="window.location.href='{{route('new')}}'"style="color: white; background-color: purple; border-radius: 15px; padding: 5px; width: 75%; margin: auto;" class="block">Register new product</button>
         <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
             @foreach ($products as $product)
                 @if ($product->user_id == auth()->user()->id)

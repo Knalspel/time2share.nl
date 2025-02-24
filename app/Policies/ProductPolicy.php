@@ -37,7 +37,7 @@ class ProductPolicy
      */
     public function update(User $user, Product $product): bool
     {
-        return $product->user()->is($user);
+        return $product->user()->is($user) || $user->admin === 1;
     }
 
     /**
@@ -45,7 +45,7 @@ class ProductPolicy
      */
     public function delete(User $user, Product $product): bool
     {
-        return $this->update($user, $product);;
+        return $this->update($user, $product)|| $user->admin === 1;
     }
 
     /**

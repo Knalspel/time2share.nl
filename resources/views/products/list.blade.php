@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
-        <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
-            <form action="{{ route('products.search') }}" method="GET" class="block w-full" style="margin: 5px;">
+        <div class="bg-white shadow-sm rounded-lg divide-y">
+            <form action="{{ route('products.search') }}" method="GET" class="block w-full p-5">
                 <input type="text" name="query" value="{{ request('query') }}" placeholder="Search for a product" style="width: 80%;">
                 <select name="category">
                     <option value="">All categories</option>
@@ -62,8 +62,8 @@
                                 <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
                             @endif
                             <a href="{{ route('products.show', $product->id) }}" 
-                            style="display: block; text-align: center; color: white; background-color: purple; border-radius: 15px; padding: 5px; width: 75%; margin: auto; text-decoration: none;">
-                                View Product
+                            class="inline-flex items-center justify-center px-4 py-2 bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150 w-full mx-auto text-center m-4">
+                                {{ __('View Product') }}
                             </a>
                         </section>
                     </div>

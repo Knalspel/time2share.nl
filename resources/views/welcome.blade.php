@@ -20,9 +20,9 @@
         @endif
     </head>
     <body>
-        <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
+        <!--<div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
             <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
-                <header class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3 bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
+                <header class="grid grid-cols-2 items-center py-5 lg:grid-cols-3 bg-gray-50 text-black/50 dark:bg-black dark:text-white/50" style="height: 60px">
                     <div class="flex lg:justify-center lg:col-start-2">
                     </div>
                     @if (Route::has('login'))
@@ -54,9 +54,49 @@
                     @endif
                 </header>
             </div>
-        </div>
-        <main>
-            Time2share.nl welkom scherm
+        </div>-->
+        <main class="flex items-center justify-center min-h-screen overflow-hidden"> <!-- Add overflow-hidden -->
+            <div class="flex items-center justify-center w-full max-w-7xl">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo Time2Share.nl" class="w-64 mr-5"> <!-- Added margin-right -->
+                <section class="w-2/5 ml-5"> <!-- Added margin-left -->
+                    <p class="mb-4">
+                        Welcome bij Time2Share.nl! Op deze website kun je jouw eigen spullen beschrikbaar maken voor andere mensen om te lenen.
+                    </p>
+                    <p class="mb-4">
+                        Je kan hier voor allemaal spullen komen. Van hobby spullen zoals games of cd's tot kledingstukken zoals jurken en tanktops.
+                    </p>
+                    <p class="mb-4">
+                        Na de deadline van je product moet de lener jouw product weer terugbrengen en kan je de lener een review geven. Hierdoor kan je zien wie er betrouwbaar zijn op de service.
+                    </p>
+                    @if (Route::has('login'))
+                        <nav class="-mx-3 flex flex-1 justify-end">
+                            @auth
+                                <a
+                                    href="{{ url('/dashboard') }}"
+                                    class="inline-block px-6 py-3 text-white bg-green-500 hover:bg-green-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition mr-4"
+                                >
+                                    Dashboard
+                                </a>
+                            @else
+                                <a
+                                    href="{{ route('login') }}"
+                                    class="inline-block px-6 py-3 text-white bg-green-500 hover:bg-green-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition mr-4"
+                                >
+                                    Log in
+                                </a>
+                                @if (Route::has('register'))
+                                    <a
+                                        href="{{ route('register') }}"
+                                        class="inline-block px-6 py-3 text-white bg-green-500 hover:bg-green-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition"
+                                    >
+                                        Register
+                                    </a>
+                                @endif
+                            @endauth
+                        </nav>
+                    @endif
+                </section>
+            </div>
         </main>
     </body>
 </html>

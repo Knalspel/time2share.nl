@@ -36,6 +36,8 @@ Route::patch('/products/{product}/loan', [ProductController::class, 'loan'])->na
 Route::patch('/products/{product}/return', [ProductController::class, 'return'])->name('products.return');
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
 Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store')->middleware('auth');
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
+
 
 
 Route::resource('products', ProductController::class)

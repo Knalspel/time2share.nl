@@ -47,6 +47,20 @@
             @endif
         </div>
 
+        <div>
+            <x-input-label for="residence" :value="__('Place of Residence')" />
+            <p class="mt-1 text-sm text-gray-600">Add a place of residence to make it easier for people to know how far to travel.</p>
+            <x-text-input id="residence" name="residence" type="text" class="mt-1 block w-full" :value="old('residence', $user->residence)" required autocomplete="residence" />
+            <x-input-error class="mt-2" :messages="$errors->get('residence')" />
+        </div>
+
+        <div>
+            <x-input-label for="phone" :value="__('Phone Number')" />
+            <p class="mt-1 text-sm text-gray-600">Add a phonenumber to make it easier for people to contact you.</p>
+            <x-text-input id="phone" name="phone" type="tel" class="mt-1 block w-full" :value="old('phone', $user->phone)" required autocomplete="tel" />
+            <x-input-error class="mt-2" :messages="$errors->get('phone')" />
+        </div>
+        
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 

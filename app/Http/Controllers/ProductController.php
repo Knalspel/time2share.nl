@@ -17,7 +17,7 @@ class ProductController extends Controller
     public function index()
     {
         return view('products.list', [
-            'products' => Product::with('user')->latest()->get(),
+            'products' => Product::with('user')->where('status', 'AVAILABLE')->latest()->get(),
             ]);
     }
 

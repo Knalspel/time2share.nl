@@ -4,6 +4,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 
 Route::get('/', function () {
@@ -11,7 +12,19 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $userId = Auth::id();
+
+    return view('dashboard', [
+        'loaningProducts' => Product::where('loaner_id', $userId) 
+            ->where('status', 'LOANING')
+            ->latest()
+            ->get(),
+
+        'returnProducts' => Product::where('loaner_id', $userId)
+            ->where('status', 'RETURN')
+            ->latest()
+            ->get(),
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/new', function() {

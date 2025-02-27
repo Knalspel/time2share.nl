@@ -18,7 +18,7 @@
                 @csrf
                 @method('PATCH')
                 <button type="submit" 
-                    class="inline-flex items-center justify-center px-4 py-2 bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150 w-full mx-auto text-center m-4">
+                    class="fade-in delay-fast inline-flex items-center justify-center px-4 py-2 bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150 w-full mx-auto text-center m-4">
                     {{ __('Loan') }}
                 </button>
             </form>  
@@ -28,7 +28,7 @@
                 $hasReviewed = $product->reviews->where('reviewer_id', auth()->user()->id)->isNotEmpty();
             @endphp
             @if (!$hasReviewed)
-                <article class="mt-6">
+                <article class="fade-in delay-fast mt-6">
                     <h2 class="text-xl font-bold text-gray-900">Leave a review for the owner/loaner!</h2>
                     <form action="{{ route('reviews.store', $product->id) }}" method="POST">
                         @csrf
@@ -38,7 +38,7 @@
                         <label class="block text-gray-700 text-sm font-bold mt-2 mb-2">Comment:</label>
                         <textarea name="comment" class="border rounded-lg p-2 w-full" rows="3"></textarea>
 
-                        <x-primary-button class="mt-4 w-full justify-center">
+                        <x-primary-button class="fade-in delay-slow mt-4 w-full justify-center">
                             Submit Review
                         </x-primary-button>
                     </form>
@@ -52,7 +52,7 @@
                 @csrf
                 @method('PATCH')
                 <button type="submit" 
-                    class="inline-flex items-center justify-center px-4 py-2 bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150 w-full mx-auto text-center m-4">
+                    class="fade-in delay-rlyslow inline-flex items-center justify-center px-4 py-2 bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150 w-full mx-auto text-center m-4">
                     Item has been returned
                 </button>
             </form>   

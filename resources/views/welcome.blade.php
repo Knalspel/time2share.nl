@@ -20,7 +20,7 @@
         @endif
     </head>
     <body>
-        <main class="flex items-center justify-center min-h-screen overflow-hidden px-4">
+        <main class="flex items-center justify-center min-h-screen overflow-hidden px-4 bg-white">
             <section class="flex flex-col md:flex-row items-center justify-center w-full max-w-7xl">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo Time2Share.nl"
                     class="w-40 md:w-64 mb-4 md:mb-0 md:mr-5">
@@ -38,17 +38,17 @@
                         <nav class="flex flex-col md:flex-row justify-center md:justify-end space-y-2 md:space-y-0 md:space-x-4">
                             @auth
                                 <a href="{{ url('/dashboard') }}"
-                                    class="px-6 py-3 text-white bg-green-500 hover:bg-green-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition">
+                                    class="fade-in delay-fast px-6 py-3 text-white bg-green-500 hover:bg-green-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition">
                                     Dashboard
                                 </a>
                             @else
                                 <a href="{{ route('login') }}"
-                                    class="px-6 py-3 text-white bg-green-500 hover:bg-green-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition">
+                                    class="fade-in delay-fast px-6 py-3 text-white bg-green-500 hover:bg-green-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition">
                                     Log in
                                 </a>
                                 @if (Route::has('register'))
                                     <a href="{{ route('register') }}"
-                                        class="px-6 py-3 text-white bg-green-500 hover:bg-green-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition">
+                                        class="fade-in delay-slow px-6 py-3 text-white bg-green-500 hover:bg-green-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition">
                                         Register
                                     </a>
                                 @endif
@@ -58,5 +58,20 @@
                 </section>
             </section>
         </main>
+        <style>
+            @keyframes fade-in {
+                from {
+                    opacity: 0;
+                    transform: translateY(10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .animate-fade-in {
+                animation: fade-in 0.8s ease-out forwards;
+            }
+        </style>
     </body>
 </html>

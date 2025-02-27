@@ -1,12 +1,12 @@
 <x-app-layout>
     <section class="py-12">
         <section class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <header class="bg-white overflow-hidden shadow-sm sm:rounded-lg my-6 mx-4">
+            <header class="fade-in delay-fast bg-white overflow-hidden shadow-sm sm:rounded-lg my-6 mx-4">
                 <h1 class="p-6 text-gray-900 font-bold">
-                {{ __("Welcome back, ") . auth()->user()->name . ("!") }}
-            </h1>
+                    {{ __("Welcome back, ") . auth()->user()->name . ("!") }}
+                </h1>
             </header>
-            <section class="bg-white overflow-hidden shadow-sm sm:rounded-lg my-2 mx-4">
+            <section class="fade-in delay-slow bg-white overflow-hidden shadow-sm sm:rounded-lg my-2 mx-4">
                 <p class="font-bold p-6 text-gray-900">Loaning Products</p>
                 @foreach ($loaningProducts as $product)
                     <section class="p-2 text-gray-900 m-2">
@@ -18,7 +18,7 @@
                     </section>
                 @endforeach
             </section>
-            <section class="bg-white overflow-hidden shadow-sm sm:rounded-lg my-2 mx-4">
+            <section class="fade-in delay-slow bg-white overflow-hidden shadow-sm sm:rounded-lg my-2 mx-4">
                 <p class="font-bold p-6 text-gray-900">Return Products</p>
                 @foreach ($returnProducts as $product)
                     <section class="p-2 text-gray-900 m-2">

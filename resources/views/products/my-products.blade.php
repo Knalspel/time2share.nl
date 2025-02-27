@@ -1,12 +1,12 @@
 <x-app-layout>
     <section class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
-        <x-primary-button onclick="window.location.href='{{ route('new') }}'" class="w-full mx-auto text-center">
+        <x-primary-button onclick="window.location.href='{{ route('new') }}'" class="fade-in delay-fast w-full mx-auto text-center">
             {{ __('Register new product') }}
         </x-primary-button>
-        <section class="mt-6 bg-white shadow-sm rounded-lg divide-y">
+        <section class="fade-in delay-fast mt-6 bg-white shadow-sm rounded-lg divide-y">
             @foreach ($products as $product)
                 @if ($product->user_id == auth()->user()->id)
-                    <section class="p-6 flex space-x-2">
+                    <section class="fade-in delay-slow p-6 flex space-x-2">
                         <section class="flex-1">
                             <section class="flex justify-between items-center flex-wrap sm:flex-nowrap">
                                 <section>

@@ -1,5 +1,5 @@
 <section>
-    <header>
+    <header class="fade-in delay-fast">
         <h2 class="text-lg font-medium text-gray-900">
             {{ __('Profile Information') }}
         </h2>
@@ -13,7 +13,7 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="fade-in delay-slow mt-6 space-y-6">
         @csrf
         @method('patch')
 

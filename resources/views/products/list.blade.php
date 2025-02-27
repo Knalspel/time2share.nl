@@ -1,5 +1,5 @@
 <x-app-layout>
-    <section class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
+    <section class="fade-in delay-fast max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
         <section class="bg-white shadow-sm rounded-lg divide-y">
             <form action="{{ route('products.search') }}" method="GET" class="block w-full p-5">
                 <input type="text" name="query" value="{{ request('query') }}" placeholder="Search for a product" style="width: 80%;">
@@ -20,7 +20,7 @@
             @endif
             @foreach ($products as $product)
                 @if ($product->status == "AVAILABLE")
-                    <section class="p-6 flex space-x-2">
+                    <section class="fade-in delay-slow p-6 flex space-x-2">
                         <section class="flex-1">
                             <section class="flex justify-between items-center">
                                 <section>

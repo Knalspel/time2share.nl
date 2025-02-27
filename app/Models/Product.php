@@ -32,6 +32,12 @@ class Product extends Model
     {
         return $this->belongsTo(User::class, 'loaner_id');
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
 }
 
 

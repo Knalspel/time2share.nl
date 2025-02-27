@@ -45,13 +45,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 Route::patch('/products/{product}/loan', [ProductController::class, 'loan'])->name('products.loan');
 Route::patch('/products/{product}/return', [ProductController::class, 'return'])->name('products.return');
-Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
-Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store')->middleware('auth');
-Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
-
-
+Route::post('/products/{product}/review', [ReviewController::class, 'store'])->name('reviews.store');
+Route::post('review-store', [ReviewController::class, 'store'])->name('review.store');
 
 Route::resource('products', ProductController::class)
     ->only(['index', 'store', 'search', 'edit', 'update', 'destroy', 'show'])

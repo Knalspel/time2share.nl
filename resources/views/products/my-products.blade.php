@@ -57,11 +57,11 @@
                                 <p class="text-base text-gray-500">Deadline: {{ $product->deadline }}</p>
 
                                 @if (!empty($product->image)) 
-                                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="mt-4 rounded-lg w-2/5">
+                                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="my-4 rounded-lg w-2/5">
                                 @endif
 
                                 <a href="{{ route('products.show', $product->id) }}" 
-                                    class="inline-flex items-center px-4 py-2 bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                    class="w-full inline-flex items-center justify-center px-4 py-2 bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
                                     View Product
                                 </a>
                             </section>

@@ -51,4 +51,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Product::class);
     }
+    
+    public function reviewsReceived()
+    {
+        return $this->hasMany(Review::class, 'receiver_id');
+    }
+
+    public function averageRating()
+    {
+        return $this->reviewsReceived()->avg('score');
+    }
 }

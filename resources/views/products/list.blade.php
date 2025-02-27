@@ -1,7 +1,6 @@
 <x-app-layout>
-    <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
-        <div class="bg-white shadow-sm rounded-lg divide-y">
-            <!-- Search Form -->
+    <section class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
+        <section class="bg-white shadow-sm rounded-lg divide-y">
             <form action="{{ route('products.search') }}" method="GET" class="block w-full p-5">
                 <input type="text" name="query" value="{{ request('query') }}" placeholder="Search for a product" style="width: 80%;">
                 <select name="category">
@@ -16,23 +15,18 @@
                 </select>
                 <button type="submit">Search</button>
             </form>
-
             @if($products->isEmpty())
                 <p class="p-6 text-gray-700">No products found.</p>
             @endif
-
             @foreach ($products as $product)
                 @if ($product->status == "AVAILABLE")
-                    <div class="p-6 flex space-x-2">
-                        <div class="flex-1">
-                            <!-- User Info + Dropdown in the same row -->
-                            <div class="flex justify-between items-center">
-                                <div>
+                    <section class="p-6 flex space-x-2">
+                        <section class="flex-1">
+                            <section class="flex justify-between items-center">
+                                <section>
                                     <span class="text-gray-800">{{ $product->user->name }}</span>
                                     <small class="ml-2 text-sm text-gray-600">{{ $product->created_at->format('j M Y, g:i a') }}</small>
-                                </div>
-
-                                <!-- Dropdown for actions (Edit/Delete) -->
+                                </section>
                                 @if ($product->user->is(auth()->user()) OR auth()->user()->admin)
                                     <x-dropdown>
                                         <x-slot name="trigger">
@@ -56,9 +50,7 @@
                                         </x-slot>
                                     </x-dropdown>
                                 @endif
-                            </div>
-
-                            <!-- Product Details -->
+                            </section>
                             <section style="margin-top: -15px">
                                 <p class="text-xl mt-4 text-gray-900">{{ $product->name }}</p>
                                 <p class="text-base text-gray-500">{{ $product->description }}</p>
@@ -66,19 +58,17 @@
                                 <p class="text-base text-gray-500">Deadline: {{ $product->deadline }}</p>
 
                                 @if (!empty($product->image)) 
-                                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="mt-4 rounded-lg">
+                                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="mt-4 rounded-lg lg:w-2/5 w-full">
                                 @endif
-
-                                <!-- View Product Button -->
                                 <a href="{{ route('products.show', $product->id) }}" 
                                 class="inline-flex items-center justify-center px-4 py-2 bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150 w-full mx-auto text-center m-4">
                                     {{ __('View Product') }}
                                 </a>
                             </section>
-                        </div>
-                    </div>
+                        </section>
+                    </section>
                 @endif
             @endforeach
-        </div>
-    </div>
+        </section>
+    </section>
 </x-app-layout>

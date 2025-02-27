@@ -20,47 +20,13 @@
         @endif
     </head>
     <body>
-        <!--<div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
-            <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
-                <header class="grid grid-cols-2 items-center py-5 lg:grid-cols-3 bg-gray-50 text-black/50 dark:bg-black dark:text-white/50" style="height: 60px">
-                    <div class="flex lg:justify-center lg:col-start-2">
-                    </div>
-                    @if (Route::has('login'))
-                        <nav class="-mx-3 flex flex-1 justify-end">
-                            @auth
-                                <a
-                                    href="{{ url('/dashboard') }}"
-                                    class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                >
-                                    Dashboard
-                                </a>
-                            @else
-                                <a
-                                    href="{{ route('login') }}"
-                                    class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                >
-                                    Log in
-                                </a>
-                            @if (Route::has('register'))
-                                    <a
-                                        href="{{ route('register') }}"
-                                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                    >
-                                        Register
-                                    </a>
-                                @endif
-                            @endauth
-                        </nav>
-                    @endif
-                </header>
-            </div>
-        </div>-->
-        <main class="flex items-center justify-center min-h-screen overflow-hidden"> <!-- Add overflow-hidden -->
-            <div class="flex items-center justify-center w-full max-w-7xl">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo Time2Share.nl" class="w-64 mr-5"> <!-- Added margin-right -->
-                <section class="w-2/5 ml-5"> <!-- Added margin-left -->
+        <main class="flex items-center justify-center min-h-screen overflow-hidden px-4">
+            <section class="flex flex-col md:flex-row items-center justify-center w-full max-w-7xl">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo Time2Share.nl"
+                    class="w-40 md:w-64 mb-4 md:mb-0 md:mr-5">
+                <section class="w-full md:w-3/5 text-center md:text-left md:ml-5">
                     <p class="mb-4">
-                        Welcome bij Time2Share.nl! Op deze website kun je jouw eigen spullen beschrikbaar maken voor andere mensen om te lenen.
+                        Welcome bij Time2Share.nl! Op deze website kun je jouw eigen spullen beschikbaar maken voor andere mensen om te lenen.
                     </p>
                     <p class="mb-4">
                         Je kan hier voor allemaal spullen komen. Van hobby spullen zoals games of cd's tot kledingstukken zoals jurken en tanktops.
@@ -69,26 +35,20 @@
                         Na de deadline van je product moet de lener jouw product weer terugbrengen en kan je de lener een review geven. Hierdoor kan je zien wie er betrouwbaar zijn op de service.
                     </p>
                     @if (Route::has('login'))
-                        <nav class="-mx-3 flex flex-1 justify-end">
+                        <nav class="flex flex-col md:flex-row justify-center md:justify-end space-y-2 md:space-y-0 md:space-x-4">
                             @auth
-                                <a
-                                    href="{{ url('/dashboard') }}"
-                                    class="inline-block px-6 py-3 text-white bg-green-500 hover:bg-green-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition mr-4"
-                                >
+                                <a href="{{ url('/dashboard') }}"
+                                    class="px-6 py-3 text-white bg-green-500 hover:bg-green-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition">
                                     Dashboard
                                 </a>
                             @else
-                                <a
-                                    href="{{ route('login') }}"
-                                    class="inline-block px-6 py-3 text-white bg-green-500 hover:bg-green-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition mr-4"
-                                >
+                                <a href="{{ route('login') }}"
+                                    class="px-6 py-3 text-white bg-green-500 hover:bg-green-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition">
                                     Log in
                                 </a>
                                 @if (Route::has('register'))
-                                    <a
-                                        href="{{ route('register') }}"
-                                        class="inline-block px-6 py-3 text-white bg-green-500 hover:bg-green-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition"
-                                    >
+                                    <a href="{{ route('register') }}"
+                                        class="px-6 py-3 text-white bg-green-500 hover:bg-green-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition">
                                         Register
                                     </a>
                                 @endif
@@ -96,7 +56,7 @@
                         </nav>
                     @endif
                 </section>
-            </div>
+            </section>
         </main>
     </body>
 </html>

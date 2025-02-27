@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
+    <article class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
         <form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data">
             @csrf
             <section style="margin-bottom: 20px">
@@ -42,7 +42,9 @@
             <h1 style="margin-bottom: -10px">Deadline:</h1>
             <input type="date" name="deadline" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
             <x-input-error :messages="$errors->get('date')" class="mt-2" />
-            <x-primary-button class="mt-4">{{ __('Post') }}</x-primary-button>
+            <x-primary-button class="mt-4">
+                {{ __('Post') }}
+            </x-primary-button>
         </form>
-    </div>
+    </article>
 </x-app-layout>

@@ -1,18 +1,18 @@
 <x-app-layout>
     <section class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
-        <x-primary-button onclick="window.location.href='{{ route('new') }}'" class="fade-in delay-fast w-full mx-auto text-center">
+        <x-primary-button name="new product button" onclick="window.location.href='{{ route('new') }}'" class="fade-in delay-fast w-full mx-auto text-center">
             {{ __('Register new product') }}
         </x-primary-button>
         <section class="fade-in delay-fast mt-6 bg-white shadow-sm rounded-lg divide-y">
             @foreach ($products as $product)
                 @if ($product->user_id == auth()->user()->id)
-                    <section class="fade-in delay-slow p-6 flex space-x-2">
+                    <section name="product" class="fade-in delay-slow p-6 flex space-x-2">
                         <section class="flex-1">
                             <section class="flex justify-between items-center flex-wrap sm:flex-nowrap">
                                 <section>
                                     <span class="text-gray-800">{{ $product->user->name }}</span>
                                     <small class="ml-2 text-sm text-gray-600">{{ $product->created_at->format('j M Y, g:i a') }}</small>                                    
-                                    <small class="text-sm ml-2 
+                                    <small name="product_status"class="text-sm ml-2 
                                         @if($product->status == 'AVAILABLE') bg-blue-500 text-white
                                         @elseif($product->status == 'LOANING') bg-yellow-400 text-gray-800
                                         @elseif($product->status == 'RETURN') bg-yellow-600 text-gray-800
@@ -23,7 +23,7 @@
                                     </small>
                                 </section>
                                 @if ($product->user->is(auth()->user()))
-                                    <section class="ml-auto relative">
+                                    <section name="dropdown"class="ml-auto relative">
                                         <x-dropdown alight="right">
                                             <x-slot name="trigger">
                                                 <button>
@@ -48,7 +48,7 @@
                                     </section>
                                 @endif
                             </section>
-                            <section style="margin-top: -15px">
+                            <section name="product_details" style="margin-top: -15px">
                                 <p class="text-xl mt-4 text-gray-900">{{ $product->name }}</p>
                                 <p class="text-base text-gray-500">{{ $product->description }}</p>
                                 <p class="text-base text-gray-500">Category: {{ $product->category }}</p>

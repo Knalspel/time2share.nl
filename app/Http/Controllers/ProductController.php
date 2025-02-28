@@ -60,11 +60,14 @@ class ProductController extends Controller
     {
         $user = Auth::user();
 
-        if ($product->user_id !== $user->id &&
+        if ($product->status !== "AVAILABLE"){
+            if ($product->user_id !== $user->id &&
             $product->loaner_id !== $user->id &&
             !$user->admin) {
             abort(403, 'You do not have permission to view this product.');
+            }
         }
+        
         return view('products.item', [
             'product' => $product,
         ]);

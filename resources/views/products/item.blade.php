@@ -34,10 +34,8 @@
                         @csrf
                         <label class="block text-gray-700 text-sm font-bold mb-2">Rating (1-5):</label>
                         <input type="range" name="score" min="1" max="5" class="lg:w-2/5 w-full" />
-
                         <label class="block text-gray-700 text-sm font-bold mt-2 mb-2">Comment:</label>
                         <textarea name="comment" class="border rounded-lg p-2 w-full" rows="3"></textarea>
-
                         <x-primary-button class="fade-in delay-slow mt-4 w-full justify-center">
                             Submit Review
                         </x-primary-button>

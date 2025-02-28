@@ -1,7 +1,7 @@
 <x-app-layout>
     <section class="fade-in delay-fast max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
         <section class="bg-white shadow-sm rounded-lg divide-y">
-            <form action="{{ route('products.search') }}" method="GET" class="block w-full p-5">
+            <form name="filter_and_search"action="{{ route('products.search') }}" method="GET" class="block w-full p-5">
                 <input type="text" name="query" value="{{ request('query') }}" placeholder="Search for a product" style="width: 80%;">
                 <select name="category">
                     <option value="">All categories</option>
@@ -13,14 +13,16 @@
                     <option value="hobby">Hobby</option>
                     <option value="anders">Anders</option>
                 </select>
-                <button type="submit">Search</button>
+                <x-primary-button>
+                    {{ __('search') }}
+                </x-primary-button>            
             </form>
             @if($products->isEmpty())
                 <p class="p-6 text-gray-700">No products found.</p>
             @endif
             @foreach ($products as $product)
                 @if ($product->status == "AVAILABLE")
-                    <section class="fade-in delay-slow p-6 flex space-x-2">
+                    <section name="product" class="fade-in delay-slow p-6 flex space-x-2">
                         <section class="flex-1">
                             <section class="flex justify-between items-center">
                                 <section>
@@ -28,7 +30,7 @@
                                     <small class="ml-2 text-sm text-gray-600">{{ $product->created_at->format('j M Y, g:i a') }}</small>
                                 </section>
                                 @if ($product->user->is(auth()->user()) OR auth()->user()->admin)
-                                    <x-dropdown>
+                                    <x-dropdown name="dropdown">
                                         <x-slot name="trigger">
                                             <button>
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
@@ -51,12 +53,11 @@
                                     </x-dropdown>
                                 @endif
                             </section>
-                            <section style="margin-top: -15px">
+                            <section name="product_details"style="margin-top: -15px">
                                 <p class="text-xl mt-4 text-gray-900">{{ $product->name }}</p>
                                 <p class="text-base text-gray-500">{{ $product->description }}</p>
                                 <p class="text-base text-gray-500">Category: {{ $product->category }}</p>
                                 <p class="text-base text-gray-500">Deadline: {{ $product->deadline }}</p>
-
                                 @if (!empty($product->image)) 
                                     <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="mt-4 rounded-lg lg:w-2/5 w-full">
                                 @endif

@@ -14,25 +14,26 @@
                             <section>
                                 <p>Name: - {{ $user->name }} - Rating: {{ number_format($user->averageRating() ?? 0, 1) }}</p>
                             </section>
-                            <section class="ml-auto relative">
-                                <x-dropdown align="right">
-                                    <x-slot name="trigger">
-                                        <button>
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-                                                <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                            </svg>
-                                        </button>
-                                    </x-slot>
-                                    <x-slot name="content">
-                                        <form method="POST" action="{{ route('admin.users.destroy', $user) }}">
+                            <section class="flex items-center ml-auto">
+                                @if (Auth::id() != $user->id)
+                                    @if ($user->blocked)
+                                        <form action="{{ route('admin.unblockUser', $user->id) }}" method="POST">
                                             @csrf
-                                            @method('DELETE')
-                                            <x-dropdown-link href="#" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this user?')) this.closest('form').submit();">
-                                                {{ __('Delete User') }}
-                                            </x-dropdown-link>
+                                            <button type="submit"
+                                                class="px-4 py-2 text-white bg-green-500 hover:bg-green-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
+                                                Unblock User
+                                            </button>
                                         </form>
-                                    </x-slot>
-                                </x-dropdown>
+                                    @else
+                                        <form action="{{ route('admin.blockUser', $user->id) }}" method="POST">
+                                            @csrf
+                                            <button type="submit"
+                                                class="px-4 py-2 text-white bg-red-500 hover:bg-red-700 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
+                                                Block User
+                                            </button>
+                                        </form>
+                                    @endif
+                                @endif
                             </section>
                         </section>
                     @endforeach

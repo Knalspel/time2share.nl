@@ -1,6 +1,6 @@
 <x-app-layout>
     <section class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-lg m-5">
-        <h1 class="text-2xl font-bold text-gray-900">{{ $product->name }} - {{ $product->status }}</h1>
+        <h1 class="text-2xl font-bold text-gray-900">{{ $product->name }}</h1>
         <p class="text-gray-600">{{ $product->description }}</p>
         <p class="text-gray-600">Category: {{ $product->category }}</p>
         <p class="text-sm text-gray-500 mt-2">Owner: {{ $product->user->name }} - Score: {{ number_format($product->user->averageRating() ?? 0, 1) }}</p>
@@ -43,8 +43,6 @@
                         </x-primary-button>
                     </form>
                 </article>
-            @else
-
             @endif
         @endif
         @if ($product->user_id == auth()->user()->id && $product->status == 'RETURN')

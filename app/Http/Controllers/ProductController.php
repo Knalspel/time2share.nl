@@ -58,6 +58,13 @@ class ProductController extends Controller
      */
     public function show(Product $product): View
     {
+        $user = Auth::user();
+
+        if ($product->user_id !== $user->id &&
+            $product->loaner_id !== $user->id &&
+            !$user->admin) {
+            abort(403, 'You do not have permission to view this product.');
+        }
         return view('products.item', [
             'product' => $product,
         ]);

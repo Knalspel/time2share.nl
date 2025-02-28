@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
                 'email' => 'admin@8055',
                 'password' => Hash::make('Eq2):6K4XS)p'),
                 'admin' => true,
+                'blocked' => false,
             ]
         );
     }

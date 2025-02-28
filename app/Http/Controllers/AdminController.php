@@ -8,18 +8,21 @@ use App\Models\User;
 
 class AdminController extends Controller
 {
-    public function destroyUser(User $user)
+    public function blockUser($id)
     {
-        if (!Auth::user() || !Auth::user()->admin) {
-            return redirect()->route('admin.panel')->with('error', 'Unauthorized action.');
-        }
+        $user = User::findOrFail($id);
+        $user->blocked = true;
+        $user->save();
 
-        if (Auth::id() === $user->id) {
-            return back();
-        }
+        return redirect()->back();
+    }
 
-        $user->delete();
+    public function unblockUser($id)
+    {
+        $user = User::findOrFail($id);
+        $user->blocked = false;
+        $user->save();
 
-        return back();
+        return redirect()->back();
     }
 }

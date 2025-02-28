@@ -14,7 +14,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Apply BlockedUserMiddleware to all routes, excluding the welcome route.
 Route::middleware(['auth', 'verified', BlockedUserMiddleware::class])->group(function () {
     Route::get('/dashboard', function () {
         $userId = Auth::id();

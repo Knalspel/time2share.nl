@@ -9,8 +9,7 @@
                     id="name"
                     name="name"
                     placeholder="{{ __('Name of product') }}"
-                    class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                ></input>
+                    class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </section>
             <section class="product_input">
@@ -38,7 +37,7 @@
             </section>
             <section class="product_input">
                 <label for="image">Image:</label>
-                <input id="image" name="image" type="file" name="image">
+                <input id="image" type="file" name="image">
                 <x-input-error :messages="$errors->get('image')" class="mt-2" />
             </section>
             <label for="deadline" style="margin-bottom: -10px">Deadline*:</label>

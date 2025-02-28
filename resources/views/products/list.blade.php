@@ -1,7 +1,7 @@
 <x-app-layout>
     <section class="fade-in delay-fast max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
         <section class="bg-white shadow-sm rounded-lg divide-y">
-            <form name="filter_and_search"action="{{ route('products.search') }}" method="GET" class="block w-full p-5">
+            <form action="{{ route('products.search') }}" method="GET" class="block w-full p-5">
                 <input type="text" name="query" value="{{ request('query') }}" placeholder="Search for a product" style="width: 80%;">
                 <select name="category">
                     <option value="">All categories</option>
@@ -53,7 +53,7 @@
                                     </x-dropdown>
                                 @endif
                             </section>
-                            <section name="product_details"style="margin-top: -15px">
+                            <section style="margin-top: -15px">
                                 <p class="text-xl mt-4 text-gray-900">{{ $product->name }}</p>
                                 <p class="text-base text-gray-500">{{ $product->description }}</p>
                                 <p class="text-base text-gray-500">Category: {{ $product->category }}</p>
@@ -61,7 +61,7 @@
                                 @if (!empty($product->image)) 
                                     <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="mt-4 rounded-lg lg:w-2/5 w-full">
                                 @endif
-                                <a href="{{ route('products.show', $product->id) }}" 
+                                <a name="view_product_button" href="{{ route('products.show', $product->id) }}" 
                                 class="inline-flex items-center justify-center px-4 py-2 bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150 w-full mx-auto text-center m-4">
                                     {{ __('View Product') }}
                                 </a>

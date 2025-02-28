@@ -9,8 +9,7 @@
                     type="text"
                     name="name"
                     value="{{ old('name', $product->name) }}"
-                    class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                ></input>
+                    class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </section>
             <section style="margin-bottom: 20px">
